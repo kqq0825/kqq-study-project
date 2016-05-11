@@ -1,0 +1,134 @@
+//变量
+@color:red;
+div {
+  color: @color;
+}
+//定义变量时可以引用其他变量
+@var: 0;
+.class1 {
+ @var: 1;
+  .class {
+    @var: 2;
+    threee:@var;
+    @var: 3;
+  }
+  one: @var;
+}
+//带参数
+.rounded-corners (@radius:5px) {
+          border-radius: @radius;
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+       -o-border-radius: @radius;
+}
+div {
+  .rounded-corners(10px);
+}
+
+//多参数
+.mixin(@color) {
+  color-1: @color ;
+}
+.mixin(@color;@padding:2) {
+  color-2: @color;
+  padding-2:@padding
+}
+.mixin(@color;@padding;@margin: 2) {
+  color-3: @color;
+  padding-3: @padding;
+  margin: @margin @margin @margin @margin;
+}
+.some .selector div {
+  .mixin(#008000;4;5px)
+}
+//调用混合参数时只上传一个参数，那么所有制强制用一个参数的混合都会被调用
+//嵌套
+div {
+  p {
+    font-size: 14px;
+    a{
+      text-decoration: none;
+      &:hover {
+        color: yellow;
+      }
+    }
+  }
+}
+//@arguments变量，包含了所有传递进来的参数
+//.box-shadow (@x: 0, @y: 0) {
+//  box-shadow: @arguments;
+//  -moz-box-shadow: @arguments;
+//  -webkit-box-shadow: @arguments;
+//}
+//.box-shadow(2px, 5px);
+
+//!important关键字
+.mixin2 (@a: 0px) {
+  border: @a;
+  boxer:@a;
+}
+.unimportant {
+  .mixin2(1px);
+}
+.important {
+  .mixin2(2px) !important;
+}
+//模式匹配与Guard表达式
+.mixin3 (dark,@color) {
+  color:darken(@color,10%);
+}
+.mixin3 (light,@color) {
+  color: lighten(@color,10%);
+}
+.mixin3 (@_,@color) {
+  display: block;
+}
+@switch:light;
+.class2 {
+  .mixin3(@switch,#888);
+}
+//匹配值和参数数量
+//Guards用来表达式匹配
+.mixin4 (@a) when (lightness(@a)>=50%) {
+  background-color: black;
+}
+.mixin4 (@a) when (lightness(@a)<50%) {
+  background-color: white;
+}
+.mixin4 (@a) {
+  color: @a;
+}
+.class3 { .mixin4(#ddd) }
+.class4 { .mixin4(#555) }
+//Guards 支持的运算符包括：>>==<<
+////true关键字是唯一判断为真的值
+//.truth (@a) when (@a) {...}
+//.truth (@a) when (@a=true) {...}
+//不为true的为假
+
+//代码嵌套
+//&串联选择器
+.bordered {
+  &.float {
+    float: left;
+  }
+  .top {
+    margin: 5px;
+  }
+}
+//&还可以反转嵌套的顺序并且可以应用到多个类
+.child, .sibling {
+  .parent & {
+    color:black;
+  }
+  &+& {
+    color: red;
+  }
+}
+//&+& 子元素的所有组合模式
+
+@base: 5%;
+@filler: (@base*2);
+@other: (@base+@filler);
+
+
