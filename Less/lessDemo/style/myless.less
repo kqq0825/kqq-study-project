@@ -1,0 +1,45 @@
+//common Less
+.mar-auto(@ml: auto,@mr: auto) {
+  margin-left: @ml;
+  margin-right: @mr;
+}
+.d-n(@d:none){
+  display: @d;
+}
+.d-b(@d:block) {
+  display: block;
+}
+.fl(@f: left) {
+  float: @f;
+  display: inline;
+}
+.fr(@f: right) {
+  float: @f;
+  display: inline;
+}
+//ÎÄ×Ö¾ÓÖÐ
+.tex-var (@h) {
+  height: @h;
+  line-height: @h;
+}
+.tex-d-n (@t: none) {
+  text-decoration: @t;
+}
+.border-radius (@radius:5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -o-border-radius: @radius;
+}
+.box-shadow (@x:0px, @y:3px, @blur: 5px, @alpha: 0.5) {
+  box-shadow: @x @y @blur rgba(0,0,0,@alpha);
+  -webkit-box-shadow: @x @y @blur rgba(0,0,0,@alpha);
+  -moz-box-shadow: @x @y @blur rgba(0,0,0,@alpha);
+}
+.transition (@prop:all, @time: 1s, @ease: linear) {
+  transition: @prop @time @ease;
+  -webkit-transition: @prop @time @ease;
+  -moz-transition: @prop @time @ease;
+  -ms-transition: @prop @time @ease;
+  -o-transition: @prop @time @ease;
+}
