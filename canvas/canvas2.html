@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>canvas封装函数</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa;margin: 50px auto;display: block;">
+
+</canvas>
+</body>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 800;
+
+        var context = canvas.getContext("2d");
+
+        //封装成函数
+        drowdemo(context,100,100,200,200,5,"#000","#f00");
+        function drowdemo(cxt,x,y,width,height,borderwidth,borderstyle,fillstyle) {
+            cxt.beginPath();
+            cxt.moveTo( x,y );
+            cxt.lineTo( x+width,y );
+            cxt.lineTo( x+width,y+height );
+            cxt.lineTo( x,y+height );
+            cxt.closePath();
+            cxt.borderStyle = borderstyle;
+            cxt.fillStyle = fillstyle;
+            cxt.borderWidth = borderwidth;
+            cxt.fill();
+            cxt.stroke();
+        }
+    }
+</script>
+</html>
